@@ -11,18 +11,20 @@
 }
 document.querySelector("span.quick1").innerHTML = quick ;*/
 
-const quickSpan = document.querySelectorAll('.content1>ul>li>a>span');
-let images= ''
-for(let j=0; j<quickSpan.length; j++) {  //span 4개 0,1,2,3 중첩문 이용
-  for (let i=0; i<20; i++){ //img 20개 생성
-    if(i<10){
-      images += `<img src=images/quick0${j+1}/quick0${j+1}_0000${i}.png />`;
-    } else {
-      images += `<img src=images/quick0${j+1}/quick0${j+1}_000${i}.png />`
+const quickSpan = document.querySelectorAll(".content1 span"); // img를 넣을 elemaent 가져오기 = span
+for(let i=0;i<quickSpan.length;i++){// span 안에 img를 넣을것임. span은 총 4개, 반복으로 넣을것이므로 for문 사용.여기서는 all로 배열의 행태로 저장했기에 length사용
+    let images = ''; //비어있는 공갈 변수. 여기에 불러온 이미지가 들어감.
+    for(let k=0;k<20;k++){ // 이미지는 0~19번 (20개) 여기서는 아직 배열의 형태가 아니므로 숫자로 표시.
+        if(k<10){
+            images += `<img src="images/quick0${i+1}/quick0${i+1}_0000${k}.png" />`
+        }else{
+            images += `<img src="images/quick0${i+1}/quick0${i+1}_000${k}.png" />`
+        }
+        quickSpan[i].innerHTML = images; 
     }
-  }
-  quickSpan[j].innerHTML = images;
 }
+
+
 /*로그인 이미지*/
 let appear = "";
 for (let i=0; i<57; i++) {
@@ -264,34 +266,27 @@ for(let i=0; i<bnnRollLists.length; i++) {
 //content1
 //마우스 올렸을 때 이미지에 애니메이션 적용
 //마우스 뗏을 때 이미지에 애니메이션 삭제
-const content1Li =document.querySelectorAll(".content ul li");
-for(let i=0; i<content1Li.length; i++){
-  content1Li[i].addEventListener('mouseover', (e) => {
-    for(let k=0; k < 20; k++) {
-     let imgLi = e.currentTarget.children[0].children[0].children;  //자식의자식의자식
-     imgLi[k].style.animation = `ani 1s linear ${delay * k}s 1`; //1번만 실행
-    }
-  });
-}
-/*//forEach문사용가능
-content1Li.forEach(item=>{ 
-  item[i].addEventListener('mouseover', (e) => {
-    for(let k=0; k < 20; k++) {
-     let imgLi = e.currentTarget.children[0].children[0].children;
-     imgLi[k].style.animation = `ani 1s linear ${delay * k}s 1`; //1번만 실행
-    }
-  });
-}*/
+//content1 마우스오버시에 애니메이션 움직이기
+const content1List = document.querySelectorAll(".content1 ul li");
 
- 
-for(let i=0; i<content1Li.length; i++){
-content1Li[i].addEventListener('mouseout', (e) => {
-  for(let k=0; k < 20; k++) {
-   let imgLi = e.currentTarget.children[0].children[0].children;
-   imgLi[k].style.animation = "none" //1번만 실행
-   }
- });
+for(let i=0;i<content1List.length;i++){
+    content1List[i].addEventListener("mouseover",e=>{
+        e.preventDefault();
+        for(let k=0;k<20;k++){//지정하지 않으면 변수가 80개씩 들어감.
+            let imgLi = e.currentTarget.children[0].children[0].children;
+            imgLi[k].style.animation = `ani  1s linear ${delay * k}s 1`
+         }
+    })
+
+    content1List[i].addEventListener("mouseout",e=>{
+        e.preventDefault();
+        for(let k=0;k<20;k++){//갯수가 뚜렷하게 확인할수있음
+            let imgLi = e.currentTarget.children[0].children[0].children;
+            imgLi[k].style.animation = "none"
+         }
+    })
 }
+
 
 /*스크롤 이벤트*/
 const btnTop =document.querySelector('.top');
