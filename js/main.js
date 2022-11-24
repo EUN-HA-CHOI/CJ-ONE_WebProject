@@ -299,23 +299,30 @@ btnTop.addEventListener('click', e => {
   });
 });
 
-window.addEventListener('scroll', () => {
+window.addEventListener('scroll',() => {
   let scroll = document.querySelector('html').scrollTop;
-  //도넛
-  const doughnut_Left_L = document.querySelector(".doughnut_Left_");
-  const doughnut_Left_s = document.querySelector(".doughnut_Left_s ");
-  const combine_Left = document.querySelector(".combine_Left");
-  
-  const doughnut_Center_M = document.querySelector(".doughnut_Center_M");
-  const combine_right  = document.querySelector(".combine_right");
+  // 도넛
+  const doughnut_left_l = document.querySelector(".doughnut_left_l");
+  const doughnut_left_s = document.querySelector(".doughnut_left_s");
+  const combine_left = document.querySelector(".combine_left");
 
-  combine_Left.style.top = `${scroll*0.7}px`;
-  doughnut_Left_s.style.top = `${scroll*0.5}px`;
-  doughnut_Left_L.style.top = `${1310-scroll*0.8}px`;
- 
-  doughnut_Center_M.style.top = `${500-scroll*0.6}px`;
-  combine_right.style.top = `${1421-scroll*0.8}px`;
-  
+  const doughnut_center_m = document.querySelector(".doughnut_center_m");
+  const doughnut_center_s = document.querySelector(".doughnut_center_s");
+
+  const doughnut_right_m = document.querySelector(".doughnut_right_m");
+  const doughnut_right_s = document.querySelector(".doughnut_right_s");
+  const combine_right = document.querySelector(".combine_right");
+  // 
+  combine_left.style.top = `${scroll * 0.7}px`;
+  doughnut_left_s.style.top = `${scroll * 0.5}px`;
+  doughnut_left_l.style.top = `${1310-scroll * 0.8}px`;
+
+  doughnut_center_m.style.top = `${scroll * 0.5}px`;
+  doughnut_center_s.style.top = `${scroll * 0.8}px`;
+
+  combine_right.style.top = `${1310-scroll * 0.4}px`;
+  doughnut_right_s.style.top = `${1310-scroll * 0.4}px`;
+  doughnut_right_m.style.top = `${scroll * 0.8}px`;
   //top 버튼
   if(scroll <= 0) {
     btnTop.classList.remove("on","ab");
